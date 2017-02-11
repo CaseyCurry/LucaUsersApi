@@ -1,7 +1,7 @@
 "use strict";
 
 const jwt = require("jwt-simple");
-const secret = require("./secret");
+const secret = process.env.TOKEN_SECRET;
 const durationInHours = 4;
 
 const generate = (email) => {

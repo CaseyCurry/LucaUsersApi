@@ -4,7 +4,7 @@ const expect = require("chai")
   .expect;
 const tokenizer = require("./tokenizer");
 const jwt = require("jwt-simple");
-const secret = require("./secret");
+const secret = process.env.TOKEN_SECRET;
 
 describe("tokenizer test suite", () => {
   const email = "email";

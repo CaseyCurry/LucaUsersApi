@@ -2,7 +2,8 @@
 
 const applicationConfigs = require("../webpack.config.js");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const serviceRegistry = require("service-registry-library");
+const webpack = require("webpack");
+const serviceRegistry = require("luca-service-registry-library");
 
 module.exports = () => {
   const statusCheckPollDuration = 15;
@@ -16,9 +17,14 @@ module.exports = () => {
           port: port
         },
         devtool: "inline-sourcemap",
-        plugins: [new HtmlWebpackPlugin({
-          filename: "specs.html"
-        })],
+        plugins: [
+          new HtmlWebpackPlugin({
+            filename: "specs.html"
+          }),
+          new webpack.DefinePlugin({
+            "process.env.TOKEN_SECRET": "123"
+          })
+        ],
         module: {
           rules: [{
             test: /\.js/,
