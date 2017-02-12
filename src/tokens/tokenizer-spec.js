@@ -24,7 +24,7 @@ describe("tokenizer test suite", () => {
 
   it("should expire token after one hour", () => {
     const durationInHours = 4;
-    const allowanceForTestInSeconds = 5;
+    const allowanceForTestInSeconds = 30;
     const maxTime = Math.floor(new Date()
       .getTime() / 1000) + (durationInHours * 60 * 60) + allowanceForTestInSeconds;
     const minTime = maxTime - (allowanceForTestInSeconds * 2);
