@@ -9,8 +9,8 @@
     "lint": "eslint . --ext .js --ext .jsx --ignore-path .gitignore",
     "build:dev": "webpack",
     "build:release": "webpack -p",
-    "start": "node --require babel-core/register --require babel-polyfill ./src/host.js",
-    "dev:start": "forever start --watch --watch-dir src/api -c \"node --require babel-core/register --require babel-polyfill\" ./src/host.js",
+    "start": "export TOKEN_SECRET=123 && node --require babel-core/register --require babel-polyfill ./src/host.js",
+    "dev:start": "export TOKEN_SECRET=123 && forever start --watch --watch-dir src/api -c \"node --require babel-core/register --require babel-polyfill\" ./src/host.js",
     "dev:stop": "forever stop src/host.js",
     "dev": "npm run dev:start & webpack-dev-server --inline --hot --open --config ./spec/webpack.config.js"
   },
