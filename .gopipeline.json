@@ -1,5 +1,5 @@
 {
-  "group": "Commits",
+  "group": "Commit",
   "name": "UsersApi",
   "label_template": "${COUNT}",
   "enable_pipeline_locking": false,
