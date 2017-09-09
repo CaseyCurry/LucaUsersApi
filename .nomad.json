@@ -38,7 +38,7 @@
           ],
           "PortLabel": "app",
           "Checks": [{
-            "Name": "healthy",
+            "Name": "Users Api Healthy",
             "Type": "http",
             "Path": "/",
             "Interval": 10000000000,
