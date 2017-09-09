@@ -70,7 +70,9 @@
     }],
     "jobs": [{
       "name": "UnitTest",
-      "environment_variables": [],
+      "environment_variables": [{
+        "TOKEN_SECRET": "123"
+      }],
       "tabs": [{
         "name": "Report",
         "path": "mochawesome/mochawesome.html"
