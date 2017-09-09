@@ -1,2 +1,1 @@
-// TODO: move to registry
-module.exports.database = "http://localhost:5984";
+module.exports.database = process.env.USERS_STORE;

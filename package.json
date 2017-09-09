@@ -9,10 +9,10 @@
     "lint": "eslint . --ext .js --ext .jsx --ignore-path .gitignore",
     "build:dev": "webpack",
     "build:release": "webpack -p",
-    "start": "export TOKEN_SECRET=123 && node --require babel-core/register --require babel-polyfill ./src/host.js",
-    "dev:start": "export TOKEN_SECRET=123 && forever start --watch --watch-dir src/api -c \"node --require babel-core/register --require babel-polyfill\" ./src/host.js",
+    "start": "export TOKEN_SECRET=123 && export USERS_STORE=http://192.168.56.104:5984 && node --require babel-core/register --require babel-polyfill ./src/host.js",
+    "dev:start": "export TOKEN_SECRET=123 && export USERS_STORE=http://192.168.56.104:5984 && forever start --watch --watch-dir src/api -c \"node --require babel-core/register --require babel-polyfill\" ./src/host.js",
     "dev:stop": "forever stop src/host.js",
-    "dev": "npm run dev:start & webpack-dev-server --inline --hot --open --config ./spec/webpack.config.js"
+    "dev": "webpack-dev-server --inline --hot --open --config ./spec/webpack.config.js"
   },
   "keywords": [],
   "author": "",
@@ -41,14 +41,15 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
+    "body-parser": "^1.16.0",
     "common-errors": "^1.0.0",
+    "cors": "^2.8.1",
     "express": "^4.14.0",
     "express-async-wrap": "^1.0.0",
     "express-jwt": "^5.1.0",
     "hash.js": "^1.0.3",
+    "helmet": "^3.4.0",
     "jwt-simple": "^0.5.1",
-    "luca-api-initializer": "^1.1.2",
-    "luca-couchdb-synchronizer": "^1.0.1",
-    "luca-service-registry-library": "^1.2.4"
+    "luca-couchdb-synchronizer": "^1.0.1"
   }
 }
