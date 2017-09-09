@@ -150,7 +150,7 @@
       "tasks": [{
         "type": "fetch",
         "run_if": "passed",
-        "pipeline": "CategoriesApi",
+        "pipeline": "UsersApi",
         "stage": "Build",
         "job": "Build",
         "is_source_a_file": false,
