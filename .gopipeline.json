@@ -30,8 +30,8 @@
       "tabs": [],
       "resources": [],
       "artifacts": [{
-        "source": "./node_modules/**/*",
-        "destination": "./node_modules",
+        "source": "node_modules/**/*",
+        "destination": "node_modules",
         "type": "build"
       }],
       "properties": [],
@@ -73,22 +73,22 @@
       "environment_variables": [],
       "tabs": [{
         "name": "Report",
-        "path": "./mochawesome/mochawesome.html"
+        "path": "mochawesome/mochawesome.html"
       }, {
         "name": "Coverage",
-        "path": "./coverage/lcov-report/index.html"
+        "path": "coverage/lcov-report/index.html"
       }],
       "resources": [],
       "artifacts": [{
-        "source": "./mochawesome-report/**/*",
-        "destination": "./mochawesome",
+        "source": "mochawesome-report/**/*",
+        "destination": "mochawesome",
         "type": "build"
       }, {
-        "source": "./spec/coverage",
+        "source": "spec/coverage",
         "destination": null,
         "type": "build"
       }, {
-        "source": "./specs.xml",
+        "source": "specs.xml",
         "destination": null,
         "type": "test"
       }],
@@ -326,7 +326,7 @@
       "tabs": [],
       "resources": [],
       "artifacts": [{
-        "source": "./version.txt",
+        "source": "version.txt",
         "destination": null,
         "type": "build"
       }],
@@ -370,7 +370,7 @@
         "stage": "Containerize",
         "job": "Containerize",
         "is_source_a_file": false,
-        "source": "container",
+        "source": "./container",
         "destination": null
       }, {
         "type": "exec",
