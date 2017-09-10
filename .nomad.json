@@ -31,7 +31,7 @@
           }]
         },
         "Services": [{
-          "Id": "/api/users",
+          "Id": "",
           "Name": "users-api",
           "Tags": [
             "luca"
