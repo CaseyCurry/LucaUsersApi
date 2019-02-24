@@ -21,30 +21,38 @@ export const register = async event => {
           "Content-Type": "text/plain",
           "Access-Control-Allow-Origin": "*"
         },
-        body: `"${error.message}"`
+        body: `${error.message}`
       };
     }
-    const existingUser = await userRepository.getByEmail(user.email);
+    let existingUser = await userRepository.getByEmail(user.email);
+    if (!existingUser) {
+      existingUser = await userRepository.getById(user.id);
+    }
     if (existingUser) {
-      // TODO: test to make sure 409 will get sent back to browser without Access-Control-Allow-Origin header
       return {
-        statusCode: 409
+        statusCode: 409,
+        headers: {
+          "Access-Control-Allow-Origin": "*"
+        }
       };
     }
     await userRepository.create(user);
-    const token = user.getToken(body.password);
+    const token = user.getToken();
     return {
       statusCode: 201,
       headers: {
         "Content-Type": "text/plain",
         "Access-Control-Allow-Origin": "*"
       },
-      body: `"${token}"`
+      body: token
     };
   } catch (error) {
     console.log(error);
     return {
-      statusCode: 500
+      statusCode: 500,
+      headers: {
+        "Access-Control-Allow-Origin": "*"
+      }
     };
   }
 };

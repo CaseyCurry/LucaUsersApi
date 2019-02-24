@@ -7,13 +7,19 @@ export const authenticate = async event => {
     const user = await userRepository.getByEmail(email);
     if (!user) {
       return {
-        statusCode: 404
+        statusCode: 404,
+        headers: {
+          "Access-Control-Allow-Origin": "*"
+        }
       };
     }
     const token = user.getToken(enteredPassword);
     if (!token) {
       return {
-        statusCode: 401
+        statusCode: 401,
+        headers: {
+          "Access-Control-Allow-Origin": "*"
+        }
       };
     }
     return {
@@ -22,12 +28,15 @@ export const authenticate = async event => {
         "Content-Type": "text/plain",
         "Access-Control-Allow-Origin": "*"
       },
-      body: `"${token}"`
+      body: token
     };
   } catch (error) {
     console.error(error);
     return {
-      statusCode: 500
+      statusCode: 500,
+      headers: {
+        "Access-Control-Allow-Origin": "*"
+      }
     };
   }
 };
