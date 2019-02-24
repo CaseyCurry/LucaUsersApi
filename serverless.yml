@@ -4,6 +4,7 @@ plugins:
   - serverless-webpack
   - serverless-dynamodb-local
   - serverless-offline
+  - serverless-prune-plugin
 
 custom:
   secrets: ${file(config/secrets.json)}
@@ -14,6 +15,9 @@ custom:
       port: 9000
       inMemory: true
       migrate: true
+  prune:
+    automatic: true
+    number: 2
 
 provider:
   name: aws
@@ -28,6 +32,7 @@ provider:
     usersTable: ${self:provider.stackName.name}-users
   deploymentBucket:
     name: ${self:provider.stage}-deployment-${self:service}
+  versionFunctions: false
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -44,6 +49,8 @@ functions:
   register:
     name: ${self:provider.stackName.name}-register
     handler: src/application-services/register-handler.register
+    # Don't need the extra memory, but his bumps the CPU as well
+    memorySize: 256
     events:
       - http:
           path: /users
@@ -64,6 +71,7 @@ resources:
       Type: "AWS::DynamoDB::Table"
       DeletionPolicy: Retain
       Properties:
+        BillingMode: PAY_PER_REQUEST
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: S
@@ -72,9 +80,6 @@ resources:
         KeySchema:
           - AttributeName: id
             KeyType: HASH
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
         TableName: ${self:provider.environment.usersTable}
         GlobalSecondaryIndexes:
           - IndexName: "ByEmail"
@@ -83,6 +88,3 @@ resources:
                 KeyType: HASH
             Projection:
               ProjectionType: ALL
-            ProvisionedThroughput:
-              ReadCapacityUnits: 1
-              WriteCapacityUnits: 1
