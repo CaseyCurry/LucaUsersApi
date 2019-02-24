@@ -5,7 +5,7 @@ import { User } from "./user";
 const password = {
   salt: "123",
   text: "12345678",
-  hashed: scrypt("12345678", "123", 8192, 8, 1, 64).toString("hex")
+  hashed: scrypt("12345678", "123", 2048, 8, 1, 64).toString("hex")
 };
 
 describe("user test suite", () => {
